@@ -10,7 +10,7 @@ var handlebars = require('handlebars'),
         file = path.resolve.apply(null, args);
         return fs.readFileSync(file, 'utf8');
     },
-    esprimaSource = reader('..', '..', '..', 'node_modules', 'esprima', 'esprima.js'),
+    espreeSource = reader('..', '..', '..', 'node_modules', 'espree', 'espree.js'),
     escodegenSource = reader('..', '..', '..', 'node_modules', 'escodegen', 'escodegen.browser.min.js'),
     yuiSource = reader('vendor', 'yui-support.js'),
     vm = require('vm'),
@@ -29,7 +29,7 @@ function handleYui(request, response) {
 
 function handleEsprima(request, response) {
     response.setHeader('content-type', 'application/javascript');
-    response.end(esprimaSource, 'utf8');
+    response.end(espreeSource, 'utf8');
 }
 
 function handleEscodegen(request, response) {
@@ -116,7 +116,7 @@ function handler(request, response) {
         case '/_yui.js':
             handleYui(request, response);
             break;
-        case '/_esprima.js':
+        case '/_espree.js':
             handleEsprima(request, response);
             break;
         case '/_escodegen.js':
