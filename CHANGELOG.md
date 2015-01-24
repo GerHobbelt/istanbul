@@ -3,6 +3,11 @@ Changelog
 
 <table>
 <tr>
+<td>v0.2.6</td><td><ul>
+    <li>Revert bad commit for tree summarizer</li>
+</ul></td>
+</tr>
+<tr>
 <td>v0.3.5</td>
 <td>
 <p>Merge #275 - `--include-all-sources` option. Thanks @gustavnikolaj</p>

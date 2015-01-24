@@ -1,6 +1,6 @@
 /*jslint nomen: true */
 var Instrumenter = require('../../lib/instrumenter'),
-    esprima = require('esprima'),
+    espree = require('espree'),
     instrumenter;
 
 module.exports = {
@@ -10,7 +10,7 @@ module.exports = {
             cb();
         },
         "barfs when a type attr is missing for a general node": function (test) {
-            var ast = esprima.parse('var foo = 1;', { loc: true });
+            var ast = espree.parse('var foo = 1;', { loc: true });
             delete ast.body[0].type;
             try {
                 instrumenter.instrumentASTSync(ast);
@@ -21,7 +21,7 @@ module.exports = {
             test.done();
         },
         "but succeeds when a property node in an AST does not have the type attr": function (test) {
-            var ast = esprima.parse('var foo = { a: 1 };', { loc: true });
+            var ast = espree.parse('var foo = { a: 1 };', { loc: true });
             delete ast.body[0].declarations[0].init.properties[0].type;
             try {
                 instrumenter.instrumentASTSync(ast);
